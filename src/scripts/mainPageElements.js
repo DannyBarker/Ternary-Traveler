@@ -39,7 +39,7 @@ const addVisited = (interestObj) => {
     let divContainer = document.querySelector("#visited-div")
     let newVisitedDiv = document.createElement("div")
     newVisitedDiv.setAttribute("id", `visitedDiv-${interestObj.id}`)
-    newVisitedDiv.appendChild(createInterestHTML(interestObj))
+    newVisitedDiv.appendChild(visitedHTML(interestObj))
     divContainer.appendChild(newVisitedDiv)
 }
 

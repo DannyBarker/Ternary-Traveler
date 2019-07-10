@@ -6,8 +6,8 @@ import {API} from "../api.js"
 const interestForm = () => {
     let interestFormDiv = document.createElement("div")
     interestFormDiv.setAttribute("id", "interestForm-Div")
-    interestFormDiv.innerHTML = `
-        <form>
+    let interestForm = document.createElement("form")
+    interestForm.innerHTML = `
         <fieldset>
             <legend for="interest-name-input">Name of Interest</legend>
             <input type="text" id="interest-name-input" placeholder="Interest Name">
@@ -24,20 +24,20 @@ const interestForm = () => {
         </fieldset>
 
         <fieldset>
-            <select id="inerest-country-input">
+            <select id="interest-country-input">
                 <option value="">Country...</option>
                 <option value="1">Italy</option>
                 <option value="2">Switzerland</option>
                 <option value="3">France</option>
             </select>
         </fieldset>
-        </form>
     `
     let submitInterestFormBtn = document.createElement("button")
     submitInterestFormBtn.setAttribute("id", "submitInterestForm-btn")
     submitInterestFormBtn.innerHTML = "Create Interest"
     submitInterestFormEvent(submitInterestFormBtn)
-    interestFormDiv.appendChild(submitInterestFormBtn)
+    interestForm.appendChild(submitInterestFormBtn)
+    interestFormDiv.appendChild(interestForm)
     return interestFormDiv
 }
 const addInterestFormToDOM = () => {
@@ -58,17 +58,14 @@ const createInterestObj = (placeId, name, description, cost, review) => {
 }
 const submitInterestFormEvent = btn => {
     btn.addEventListener("click", () => {
-        let placeId = document.querySelector("#interest-country-input")
-        let name = document.querySelector("#interest-name-input")
-        let description = document.querySelector("#interest-description-input")
-        let cost = document.querySelector("#interest-cost-input")
-        let review = document.querySelector("#interest-review-input")
+        let placeId = +document.querySelector("#interest-country-input").value
+        let name = document.querySelector("#interest-name-input").value
+        let description = document.querySelector("#interest-description-input").value
+        let cost = +document.querySelector("#interest-cost-input").value
+        let review = ""
         let interestObj = createInterestObj(placeId, name, description, cost, review)
-        API.addData("interests", interestObj).then(data =>{
-            data.forEach( interestData => {
-                console.log(interestData);
-            });
-        })
+        console.log(interestObj);
+        API.addData("interests", interestObj)
     })
 }
 

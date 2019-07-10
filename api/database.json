@@ -32,6 +32,30 @@
       "description": "Local market where you can purchase local products and try the local food",
       "cost": 0,
       "review": "AWESOME!"
+    },
+    {
+      "placeId": 1,
+      "name": "NSS",
+      "description": "bootcamp",
+      "cost": 12000,
+      "review": "",
+      "id": 3
+    },
+    {
+      "placeId": 2,
+      "name": "gamestop",
+      "description": "buy games",
+      "cost": 60,
+      "review": "",
+      "id": 4
+    },
+    {
+      "placeId": 2,
+      "name": "Target",
+      "description": "Buying stuff",
+      "cost": 100,
+      "review": "",
+      "id": 5
     }
   ]
 }
