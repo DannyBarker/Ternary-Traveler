@@ -17,6 +17,7 @@ const createInterestEl = () => {
     interestSection.appendChild(interestDiv)
     return interestSection
 }
+
 const addInterests = (interestObj) => {
     let divContainer = document.querySelector("#interest-div")
     let newInterestDiv = document.createElement("div")
