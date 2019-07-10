@@ -44,11 +44,13 @@ const interestForm = () => {
     interestFormDiv.appendChild(interestForm)
     return interestFormDiv
 }
+
 const addInterestFormToDOM = () => {
     let domContainer = document.querySelector("#container")
     domContainer.innerHTML = ""
     domContainer.appendChild(interestForm())
 }
+
 const createInterestObj = (placeId, name, description, cost, review) => {
     let newObj = {
         placeId,
@@ -60,6 +62,7 @@ const createInterestObj = (placeId, name, description, cost, review) => {
     return newObj
 
 }
+
 const submitInterestFormEvent = btn => {
     btn.addEventListener("click", () => {
         let placeId = +document.querySelector("#interest-country-input").value
