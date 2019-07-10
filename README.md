@@ -1,3 +1,47 @@
+# The Ternary Traveler
+
+You've been asked to put together a simple application for your client, Mira. Mira is a travel blogger who creates both videos and writes blog posts for her website. She tries to travel to three destinations per month, spending a week in each place. Then she takes a week off before starting the whole cycle again. She has requested a single page application where she can add points of interests for the next set of three places she will be visiting. She would like to be able to add a new point of interest in one of her destinations so she can have a list of places she needs to visit when she travels. As she visits each point of interest, she would like to be able to edit the point of interest by adjusting the cost and adding a review. She has also asked to be able to delete points of interest from her list. But to ensure she does not accidentally delete anything, she would like an alert to to confirm the delete action.
+
+Mira expects an application that has a clean user interface with easy to read text and an intuitive interface. However, it is **much** more important that the application performs the required functionality than that it looks perfect.
+
+
+To start you off, here's what the resources in your API should look like for this application:
+
+### Places
+
+```json
+{
+  "places": [
+    { 
+      "id": 1, 
+      "name": "Italy", 
+      "visa_required": false 
+    },
+    { 
+      "id": 2, 
+      "name": "Switzerland", 
+      "visa_required": true 
+    },
+    { 
+      "id": 3, 
+      "name": "France", 
+      "visa_required": false
+    }
+  ],
+  "interests": []
+}```
+
+### Interests
+
+An example of what an interest would like when it is initially added:
+```json
+{ "id": 1, "placeId": 1, "name": "Local Market", "description": "Local market where you can purchase local products and try the local food", "cost": 0.00, "review": "" }```
+
+An example of what an interest would like after it has been visited and reviewed:
+```json
+{ "id": 1, "placeId": 1, "name": "Local Market", "description": "Local market where you can purchase local products and try the local food", "cost": 0.00, "review": "You can definitely get things for a lower price if you are willing to bargain!" }```
+(edited)
+
 ## Story
 As a user, I should be able to enter in an point of interest, and associate it with a place.
 
@@ -47,4 +91,4 @@ As a user, I should be able to enter in an point of interest, and associate it w
 ## Technical Requirements
 
 1. The application should be built using Webpack to assist your development process.
-1. For persistent data storage, use [json-server](https://github.com/typicode/json-server). 
+1. For persistent data storage, use [json-server](https://github.com/typicode/json-server).
