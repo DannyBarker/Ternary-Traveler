@@ -25,17 +25,21 @@ const interestForm = () => {
 
         <fieldset>
             <select id="interest-country-input">
-                <option value="">Country...</option>
+                <option>Country...</option>
                 <option value="1">Italy</option>
                 <option value="2">Switzerland</option>
                 <option value="3">France</option>
             </select>
         </fieldset>
     `
+    let cancelInterestFormBtn = document.createElement("button")
+    cancelInterestFormBtn.setAttribute("id", "cancelInterestForm-btn")
+    cancelInterestFormBtn.innerHTML = "Cancel"
     let submitInterestFormBtn = document.createElement("button")
     submitInterestFormBtn.setAttribute("id", "submitInterestForm-btn")
     submitInterestFormBtn.innerHTML = "Create Interest"
     submitInterestFormEvent(submitInterestFormBtn)
+    interestForm.appendChild(cancelInterestFormBtn)
     interestForm.appendChild(submitInterestFormBtn)
     interestFormDiv.appendChild(interestForm)
     return interestFormDiv
@@ -64,8 +68,12 @@ const submitInterestFormEvent = btn => {
         let cost = +document.querySelector("#interest-cost-input").value
         let review = ""
         let interestObj = createInterestObj(placeId, name, description, cost, review)
-        console.log(interestObj);
-        API.addData("interests", interestObj)
+        if (placeId !== NaN, name, description, cost) {
+            API.addData("interests", interestObj)
+        } else {
+            event.preventDefault()
+            alert("Please fill out all fields!")
+        }
     })
 }
 

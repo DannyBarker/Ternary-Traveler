@@ -18,6 +18,15 @@ let API = {
             body: JSON.stringify(obj)
         })
         .then(data => data.json())
+    },
+    delData: (entity, id) => {
+        return fetch(`http://localhost:8088/${entity}/${id}`, {
+            method: "DELETE",
+            headers:{
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            }
+        })
     }
 }
 

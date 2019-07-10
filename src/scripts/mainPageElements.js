@@ -20,7 +20,14 @@ const addInterests = (interestObj) => {
     let divContainer = document.querySelector("#interest-div")
     let newInterestDiv = document.createElement("div")
     newInterestDiv.setAttribute("id", `interestDiv-${interestObj.id}`)
+    let interestForm = document.createElement("form")
+    let delInterestBtn = document.createElement("button")
+    delInterestBtn.setAttribute("id", `${interestObj.id}`)
+    delInterestBtn.innerHTML = "Delete"
+    delBtnEvent(delInterestBtn, interestObj)
+    interestForm.appendChild(delInterestBtn)
     newInterestDiv.appendChild(createInterestHTML(interestObj))
+    newInterestDiv.appendChild(interestForm)
     divContainer.appendChild(newInterestDiv)
 }
 
@@ -39,8 +46,32 @@ const addVisited = (interestObj) => {
     let divContainer = document.querySelector("#visited-div")
     let newVisitedDiv = document.createElement("div")
     newVisitedDiv.setAttribute("id", `visitedDiv-${interestObj.id}`)
+    let delForm = document.createElement("form")
+    let delVisitedBtn = document.createElement("button")
+    delVisitedBtn.setAttribute("id", `${interestObj.id}`)
+    delVisitedBtn.innerHTML = "Delete"
+    delBtnEvent(delVisitedBtn, interestObj)
+    delForm.appendChild(delVisitedBtn)
     newVisitedDiv.appendChild(visitedHTML(interestObj))
+    newVisitedDiv.appendChild(delForm)
     divContainer.appendChild(newVisitedDiv)
+}
+
+const delBtnEvent = (btn, obj) => {
+    btn.addEventListener("click", () => {
+        event.preventDefault()
+        let elToRemove = document.getElementById(`interestArticle-${obj.id}`)
+        let btnToRemove = document.getElementById(`${obj.id}`)
+        let btnId = event.target.id
+        if (confirm(`Would you like to delete "${obj.name}"?`)) {
+            API.delData("interests", btnId).then(() => {
+                elToRemove.remove()
+                btnToRemove.remove()
+            })
+        } else {
+            event.preventDefault()
+        }
+    })
 }
 
 const visitedHTML = (interestObj) => {
