@@ -68,7 +68,7 @@ const submitInterestFormEvent = btn => {
         let cost = +document.querySelector("#interest-cost-input").value
         let review = ""
         let interestObj = createInterestObj(placeId, name, description, cost, review)
-        if (placeId !== NaN, name, description, cost) {
+        if (placeId && name && description && cost) {
             API.addData("interests", interestObj)
         } else {
             event.preventDefault()

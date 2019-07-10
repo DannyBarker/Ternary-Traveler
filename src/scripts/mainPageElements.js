@@ -1,5 +1,6 @@
-import {addInterestEvent} from "./interests/eventListeners.js"
-import {addVisitedEvent} from "./visited/eventListeners.js"
+import {addInterestEvent} from "./interests/interestEventListeners.js/index.js"
+import {addVisitedEvent} from "./visited/visitedEventListeners.js/index.js"
+import {delBtnEvent, addEditEvent} from "./mainEventListeners.js/index.js"
 import {API} from "./api.js"
 
 const createInterestEl = () => {
@@ -38,10 +39,14 @@ const createInterestHTML = (interestObj) => {
         <h3 id="interestName-${interestObj.id}"><strong>${interestObj.name}</strong></h3>
         <h4 id="interestCountry-${interestObj.id}">Country: <br> ${interestObj.place.name}</h4>
         <p id="interestDescription-${interestObj.id}">Description: <br> ${interestObj.description}</p>
-        <p id="interestCost-${interestObj.id}">Cost: $${String(interestObj.cost)}</p>
+        <p>Cost:</p>
+        <p id="interestCost-${interestObj.id}">${String(interestObj.cost)}</p>
     `
+    addEditEvent(newInterestArticle, interestObj)
     return newInterestArticle
 }
+
+
 const addVisited = (interestObj) => {
     let divContainer = document.querySelector("#visited-div")
     let newVisitedDiv = document.createElement("div")
@@ -57,22 +62,6 @@ const addVisited = (interestObj) => {
     divContainer.appendChild(newVisitedDiv)
 }
 
-const delBtnEvent = (btn, obj) => {
-    btn.addEventListener("click", () => {
-        event.preventDefault()
-        let elToRemove = document.getElementById(`interestArticle-${obj.id}`)
-        let btnToRemove = document.getElementById(`${obj.id}`)
-        let btnId = event.target.id
-        if (confirm(`Would you like to delete "${obj.name}"?`)) {
-            API.delData("interests", btnId).then(() => {
-                elToRemove.remove()
-                btnToRemove.remove()
-            })
-        } else {
-            event.preventDefault()
-        }
-    })
-}
 
 const visitedHTML = (interestObj) => {
     let newVisitedArticle = document.createElement("article")
@@ -81,9 +70,12 @@ const visitedHTML = (interestObj) => {
         <h3 id="visitedName-${interestObj.id}"><strong>${interestObj.name}</strong></h3>
         <h4 id="visitedCountry-${interestObj.id}">Country: <br> ${interestObj.place.name}</h4>
         <p id="visitedDescription-${interestObj.id}">Description: <br> ${interestObj.description}</p>
-        <p id="visitedCost-${interestObj.id}">Cost: $${String(interestObj.cost)}</p>
-        <p id="visitedReview-${interestObj.id}"> Review: <br> ${interestObj.review}</p>
+        <p>Cost: </p>
+        <p id="visitedCost-${interestObj.id}">${String(interestObj.cost)}</p>
+        <p> Review:</p>
+        <p id="visitedReview-${interestObj.id}">${interestObj.review}</p>
     `
+    addEditEvent(newVisitedArticle, interestObj)
     return newVisitedArticle
 }
 
